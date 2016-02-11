@@ -18,7 +18,7 @@ public class TesteJPARemove {
 
 		manager.getTransaction().begin(); //cuida da transacao
 
-		//quando está como detached não podemos remover, precisa estar managed
+		//não podemos remover, precisa estar managed
 		Conta contaARemover = manager.find(Conta.class, 2);
 
 		//JPA executa > select > delete

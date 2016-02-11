@@ -11,7 +11,6 @@ public class TesteJPAFind {
 
 		double inicio = System.currentTimeMillis();
 
-
 		EntityManager manager = new JPAUtil().getEntityManager();
 		manager.getTransaction().begin();
 
@@ -23,6 +22,16 @@ public class TesteJPAFind {
 		conta.setTitular("Felipe Leme");
 
 		manager.getTransaction().commit();
+
+		System.out.println("Transação ativa: " + manager.getTransaction().isActive());
+		//alteração não será sincronizada, transação não está mais ativa
+		conta.setTitular("Felipe A. S. Leme");
+
+		//vamos abrir uma nova tranção para sincronizar a entidade
+		manager.getTransaction().begin();
+		manager.merge(conta);
+		manager.getTransaction().commit();
+
 		manager.close();
 
 		System.out.println(conta);

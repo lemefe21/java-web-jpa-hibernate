@@ -1,11 +1,16 @@
 package br.com.caelum.financas.teste;
 
+import java.math.BigDecimal;
+import java.util.Calendar;
+
 import javax.persistence.EntityManager;
 
 import br.com.caelum.financas.modelo.Conta;
+import br.com.caelum.financas.modelo.Movimentacao;
+import br.com.caelum.financas.modelo.TipoMovimentacao;
 import br.com.caelum.financas.util.JPAUtil;
 
-public class TesteJPA {
+public class TesteJPARelacionamento {
 
 	public static void main(String[] args) {
 
@@ -13,14 +18,17 @@ public class TesteJPA {
 
 		Conta conta = new Conta("Felipe", "123457", "Banco Real", "9999-1");
 
+		Movimentacao movimentacao = new Movimentacao(new BigDecimal("120.9"),
+				TipoMovimentacao.SAIDA, Calendar.getInstance(), "Conta de luz", conta);
+
 		EntityManager manager = new JPAUtil().getEntityManager();
 
-		manager.getTransaction().begin(); //cuida da transacao
+		manager.getTransaction().begin();
 
-		//até aqui o objeto conta está em estado transient
-		//não possui representação no banco de dados
+		//conta ainda está transient
 		manager.persist(conta);
-		//entidade passa a ser managed pelo método persist
+		manager.persist(movimentacao);
+
 		manager.getTransaction().commit();
 		manager.close();
 

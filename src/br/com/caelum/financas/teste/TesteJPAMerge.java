@@ -18,7 +18,7 @@ public class TesteJPAMerge {
 
 		manager.getTransaction().begin(); //cuida da transacao
 
-		//quando o objeto já foi managed e agora é detached
+		//quando o objeto já foi managed e agora é detached (id=2)
 		//para voltar a ser managed, utilizamos o método merge
 		//JPA executa > select > update
 		manager.merge(conta);
