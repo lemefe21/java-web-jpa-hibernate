@@ -17,12 +17,12 @@ public class TesteConsulta {
 		//JPQL
 		//Java Persistence Query Language
 
+		//Seleciona todas as movimentações da conta com id = 2, tipo saida e order por valor
+
 		EntityManager manager = new JPAUtil().getEntityManager();
 
 		Conta conta = new Conta();
 		conta.setId(2);
-
-		//Seleciona todas as movimentações da conta com id = 2, tipo saida e order por valor
 
 		//Positional parameter notation
 		//Query query = manager.createQuery("select m from Movimentacao m where m.conta = ?1");
@@ -40,6 +40,8 @@ public class TesteConsulta {
 		for (Movimentacao movimentacao : resultList) {
 			System.out.println(movimentacao);
 		}
+
+		manager.close();
 
 	}
 

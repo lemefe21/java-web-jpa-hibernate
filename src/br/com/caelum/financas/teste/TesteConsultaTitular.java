@@ -28,6 +28,7 @@ public class TesteConsultaTitular {
 			System.out.println(movimentacao);
 		}
 
+		manager.close();
 	}
 
 }
