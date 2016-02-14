@@ -35,7 +35,7 @@ public class TesteConsulta {
 		query.setParameter("pConta", conta);
 		query.setParameter("pTipo", TipoMovimentacao.SAIDA);
 
-		List<Movimentacao> resultList = query.getResultList();
+		List<Movimentacao> resultList = query.getResultList(); //executa a query
 
 		for (Movimentacao movimentacao : resultList) {
 			System.out.println(movimentacao);

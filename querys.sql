@@ -13,3 +13,16 @@ select * from movimentacao;
 
 select * from movimentacao where conta_id = 1 and tipoMovimentacao = 'SAIDA';
 
+select * from movimentacao where conta_id = 2;
+
+select c.titular from conta c left join movimentacao m 
+on c.id = m.conta_id and m.id = 1;
+
+select c.titular from conta c right join movimentacao m 
+on c.id = m.conta_id and m.id = 1;
+
+select c.titular from conta c inner join movimentacao m 
+on c.id = m.conta_id and m.id = 1; -- retorna somente o titular do movimento id 1
+
+
+
